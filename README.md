@@ -1,6 +1,6 @@
 # JavaCalculator
 <h3> What is this project? </h3>
-<p> Simple calculator developed in Java (JDK 1.8.0_221) as practice for what I have learned about the language. </p>
+<p> Simple GUI calculator developed in Java (JDK 1.8.0_221) to practise what I have learned about Object-Oriented Design and to develop on it. </p>
 
 <h3> Features to be implemented: </h3>
   <ul>
