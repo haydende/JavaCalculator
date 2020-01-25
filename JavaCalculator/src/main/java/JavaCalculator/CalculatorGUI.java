@@ -1,11 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package JavaCalculator;
+
 import JavaCalculator.ActionHandlers.*;
 import javax.swing.*;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowFocusListener;
+
 
 /**
  * Class for building the GUI components of the application
@@ -76,7 +80,25 @@ public class CalculatorGUI {
         divButton.addActionListener(obh.new DivisionHandler());         // /
         mulButton.addActionListener(obh.new MultiplicationHandler());   // * 
         
+        // Add a container with a GridLayout for the JButtons
+        Container container = frame.getContentPane();
+        
+        // Add a GridLayout with 4 rows and 5 columns to the container
+        // GridLayout is set to have 10px space vertical and horizontal
+        GridLayout btnLayout = new GridLayout(4, 5, 10, 10);
+        container.setLayout(btnLayout);
+        
+        // Adding the JButtons to the GridLayout
+        container.add(addButton);
+        container.add(subButton);
+        container.add(divButton);
+        container.add(mulButton);
+        
+        // set the size of the frame tp 400 x 600
+        frame.setSize(400, 600);        
+          
         // Make the new frame visible
         frame.setVisible(true);
     }
+    
 }

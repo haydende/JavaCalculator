@@ -3,6 +3,9 @@ package JavaCalculator.ActionHandlers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 
 /**
  * Class containing private classes using the ActionListener interface. This 
@@ -67,7 +70,14 @@ public class FileMenuHandlers {
     public class QuitHandler implements ActionListener {
         
         public void actionPerformed(ActionEvent ae) {
-            System.exit(0);
+            int result = JOptionPane.showConfirmDialog(
+                                        null,
+                                        "Do you want to quit the application?",
+                                        "Quit?",
+                                        JOptionPane.YES_NO_OPTION);
+                
+            if (result == JOptionPane.YES_OPTION)
+                System.exit(0);
         }
     }
 }
