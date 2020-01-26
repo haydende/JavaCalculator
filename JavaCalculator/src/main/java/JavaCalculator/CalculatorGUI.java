@@ -5,6 +5,7 @@ import JavaCalculator.ActionHandlers.*;
 import javax.swing.*;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
@@ -26,6 +27,13 @@ public class CalculatorGUI {
     // Create frame for GUI
     private JFrame frame = new JFrame("JavaCalculator");
     
+    // Declare Container for frame
+    private Container container;
+    
+    // Declare JPanels for top and bottom halves
+    private JPanel topHalf;
+    private JPanel botHalf;
+    
     // Create MenuBar 
     private JMenuBar menuBar = new JMenuBar();
     
@@ -38,6 +46,20 @@ public class CalculatorGUI {
     private JMenuItem optionsItem = new JMenuItem("Options...");
     private JMenuItem quitItem = new JMenuItem("Quit...");
     
+    // Create buttons 0-9
+    private JButton clear = new JButton("C");
+    private JButton backspace = new JButton("<");
+    private JButton zeroButton = new JButton("0");
+    private JButton oneButton = new JButton("1");
+    private JButton twoButton = new JButton("2");
+    private JButton threeButton = new JButton("3");
+    private JButton fourButton = new JButton("4");
+    private JButton fiveButton = new JButton("5");
+    private JButton sixButton = new JButton("6");
+    private JButton sevenButton = new JButton("7");
+    private JButton eightButton = new JButton("8");
+    private JButton nineButton = new JButton("9");
+    
     // Create =, +, -, / and * buttons
     private JButton equalsButton = new JButton("=");
     private JButton addButton = new JButton("+");
@@ -49,7 +71,52 @@ public class CalculatorGUI {
         makeFrame();
     }
     
+    /**
+     * Method for creating the main window of the UI.
+     */
     private void makeFrame() {
+        
+        // Add a container with a BoxLayout for the JPanels
+        container = frame.getContentPane();
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        
+        // Create JPanel for the top half of the UI
+        topHalf = new JPanel();
+        // Set a box layout 
+        topHalf.setLayout(new BoxLayout(topHalf, BoxLayout.X_AXIS));
+        // Add topHalf to the Container
+        container.add(topHalf);
+        
+        // Create JPanel for the bottom half of the UI
+        botHalf = new JPanel();
+        // Set a box layout
+        botHalf.setLayout(new BoxLayout(botHalf, BoxLayout.X_AXIS));
+        // Add botHalf to the container
+        container.add(botHalf);
+        
+        // Create the input area JPanel
+        createInputArea();
+        
+        // Create the numpad JPanel
+        createNumpad();
+        
+        // Create the Operator buttons JPanel
+        createOpButtons();
+        
+        // Create the frame's MenuBar
+        createMenuBar();
+        
+        // Set the size of the frame tp 400 x 600
+        frame.setSize(400, 600);        
+          
+        // Make the new frame visible
+        frame.setVisible(true);
+    }
+    
+    /**
+     * Method for creating the main window's MenuBar.
+     */
+    private void createMenuBar() {
         
         // Add ActionListeners to the JMenuItems
         saveHistItem.addActionListener(fmh.new SaveHistHandler()); // Save History...
@@ -72,6 +139,30 @@ public class CalculatorGUI {
         
         // Set the JMenuBar for the main window
         frame.setJMenuBar(menuBar);
+    }
+    
+    /**
+     * Method for creating the JLabel and JTextField at the top of the window.
+     */
+    private void createInputArea() {
+        
+        // Add a JPanel for the JLabel and JTextField
+        JPanel equation = new JPanel();
+        equation.setLayout(new BoxLayout(equation, BoxLayout.Y_AXIS));
+        
+        JLabel inputLabel = new JLabel("Your equation: ");
+        JTextField input = new JTextField();
+        
+        equation.add(inputLabel);
+        equation.add(input);
+        
+        topHalf.add(equation);
+    }
+    
+    /**
+     * Method for creating the numpad JButtons.
+     */
+    private void createNumpad() {
         
         // Add ActionListeners to the JButtons
         equalsButton.addActionListener(obh.new EqualsHandler());        // =
@@ -80,25 +171,43 @@ public class CalculatorGUI {
         divButton.addActionListener(obh.new DivisionHandler());         // /
         mulButton.addActionListener(obh.new MultiplicationHandler());   // * 
         
-        // Add a container with a GridLayout for the JButtons
-        Container container = frame.getContentPane();
-        
         // Add a GridLayout with 4 rows and 5 columns to the container
-        // GridLayout is set to have 10px space vertical and horizontal
-        GridLayout btnLayout = new GridLayout(4, 5, 10, 10);
-        container.setLayout(btnLayout);
+        // GridLayout is set to have 5px space vertical and horizontal
+        JPanel numpad = new JPanel();
+        numpad.setLayout(new GridLayout(4, 5, 3, 3));
         
-        // Adding the JButtons to the GridLayout
-        container.add(addButton);
-        container.add(subButton);
-        container.add(divButton);
-        container.add(mulButton);
+        // Adding the numpad JButtons to the GridLayout
+        numpad.add(clear);
+        numpad.add(backspace);
+        numpad.add(zeroButton);
+        numpad.add(oneButton);
+        numpad.add(twoButton);
+        numpad.add(threeButton);
+        numpad.add(fourButton);
+        numpad.add(fiveButton);
+        numpad.add(sixButton);
+        numpad.add(sevenButton);
+        numpad.add(eightButton);
+        numpad.add(nineButton);   
         
-        // set the size of the frame tp 400 x 600
-        frame.setSize(400, 600);        
-          
-        // Make the new frame visible
-        frame.setVisible(true);
+        botHalf.add(numpad);        
+    }
+    
+    /**
+     * Method for creating the Operator JButtons.
+     */
+    private void createOpButtons() {
+        
+        JPanel opBtns = new JPanel();
+        opBtns.setLayout(new BoxLayout(opBtns, BoxLayout.Y_AXIS));
+        
+        opBtns.add(equalsButton);
+        opBtns.add(addButton);
+        opBtns.add(subButton);
+        opBtns.add(divButton);
+        opBtns.add(mulButton);
+        
+        botHalf.add(opBtns);
     }
     
 }
