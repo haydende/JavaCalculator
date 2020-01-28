@@ -2,8 +2,10 @@
 package JavaCalculator;
 
 import JavaCalculator.ActionHandlers.*;
+import java.awt.Color;
 import javax.swing.*;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -105,11 +107,13 @@ public class CalculatorGUI {
         // Set the window's default close operation as nothing so that the 
         // window listener can be enacted instead
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        
         // Add the window listener 
         addCloseListener();
         
         // Set the size of the frame tp 400 x 220
-        frame.setSize(400, 220);      
+        frame.setSize(400, 250);      
+        
         // Make the window start in the center of the screen
         frame.setLocationRelativeTo(null);
           
@@ -155,10 +159,13 @@ public class CalculatorGUI {
         equation.setLayout(new BoxLayout(equation, BoxLayout.Y_AXIS));
         
         // JLabel for the current equation
-        JLabel currentEquation = new JLabel("");
+        JLabel currentEquation = new JLabel("0");
+        currentEquation.setForeground(Color.GRAY);
         
         // Create JTextField for the user input
         JTextField input = new JTextField();
+        // Set maximum size for the text field to make sure it doesn't get too big
+        input.setMaximumSize(new Dimension(400, 25));
         
         // Set the Document object as InputValidation() to ensure only numbers
         input.setDocument(new InputValidation());
@@ -166,6 +173,7 @@ public class CalculatorGUI {
         equation.add(currentEquation);
         equation.add(input);
         
+        // Add the equation JPanel to the top half
         topHalf.add(equation);
     }
     
@@ -200,6 +208,7 @@ public class CalculatorGUI {
         numpad.add(eightButton);
         numpad.add(nineButton);   
         
+        // Add the numpad JPanel to the bottom half
         botHalf.add(numpad);        
     }
     
@@ -217,6 +226,7 @@ public class CalculatorGUI {
         opBtns.add(divButton);
         opBtns.add(mulButton);
         
+        // Add the opBtns JPanel to the bottom half
         botHalf.add(opBtns);
     }
     
@@ -228,12 +238,16 @@ public class CalculatorGUI {
         
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
+                
+                // Create Confirm dialog and store result
                 int result = JOptionPane.showConfirmDialog(frame, 
                                                            "Are you sure you want to quit?", 
                                                            "Quit?", 
                                                            JOptionPane.YES_NO_OPTION);
                 
+                // If captured result is the yes option...
                 if (result == JOptionPane.YES_OPTION)
+                    // Set the close operation to EXIT_ON_CLOSE (Application ends)
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
         });
