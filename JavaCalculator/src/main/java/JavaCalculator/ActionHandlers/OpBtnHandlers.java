@@ -18,8 +18,7 @@ public class OpBtnHandlers {
     public class EqualsHandler implements ActionListener {
         
         public void actionPerformed(ActionEvent ae) {
-            JButton source = (JButton)ae.getSource();
-            source.getRootPane().getRootPane();
+            
         }
     }
 
