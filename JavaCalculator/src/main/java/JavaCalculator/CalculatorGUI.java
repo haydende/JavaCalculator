@@ -189,13 +189,6 @@ public class CalculatorGUI {
      */
     private void createNumpad() {
         
-        // Add ActionListeners to the JButtons
-        equalsButton.addActionListener(obh.new EqualsHandler());        // =
-        addButton.addActionListener(obh.new AdditionHandler());         // +
-        subButton.addActionListener(obh.new SubtractionHandler());      // -
-        divButton.addActionListener(obh.new DivisionHandler());         // /
-        mulButton.addActionListener(obh.new MultiplicationHandler());   // * 
-        
         // Add a GridLayout with 4 rows and 5 columns to the container
         // GridLayout is set to have 5px space vertical and horizontal
         JPanel numpad = new JPanel();
@@ -223,6 +216,13 @@ public class CalculatorGUI {
      * Method for creating the Operator JButtons.
      */
     private void createOpButtons() {
+        
+        // Add ActionListeners to the JButtons
+        equalsButton.addActionListener(obh.new EqualsHandler());        // =
+        addButton.addActionListener(obh.new AdditionHandler());         // +
+        subButton.addActionListener(obh.new SubtractionHandler());      // -
+        divButton.addActionListener(obh.new DivisionHandler());         // /
+        mulButton.addActionListener(obh.new MultiplicationHandler());   // * 
         
         JPanel opBtns = new JPanel();
         opBtns.setLayout(new BoxLayout(opBtns, BoxLayout.Y_AXIS));

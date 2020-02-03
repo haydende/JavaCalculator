@@ -3,6 +3,7 @@ package JavaCalculator.ActionHandlers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  * Class containing private classes using the ActionListener interface. This 
@@ -17,7 +18,8 @@ public class OpBtnHandlers {
     public class EqualsHandler implements ActionListener {
         
         public void actionPerformed(ActionEvent ae) {
-            // TODO
+            JButton source = (JButton)ae.getSource();
+            source.getRootPane().getRootPane();
         }
     }
 
