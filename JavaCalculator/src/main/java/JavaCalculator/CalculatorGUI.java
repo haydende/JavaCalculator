@@ -66,6 +66,13 @@ public class CalculatorGUI {
     private JButton mulButton = new JButton("*");
     
     public CalculatorGUI() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            SwingUtilities.updateComponentTreeUI(frame);
+            
+        } catch (Exception e) {
+            
+        }
         makeFrame();
     }
     
